@@ -1,4 +1,4 @@
-# Spring Boot Blueprint
+# Description
 This project is a template based on Spring Boot for REST applications. 
 
 It already includes the following: 
@@ -8,11 +8,13 @@ It already includes the following:
 - Rest controller for CRUD-operations regarding the entity
 - Unit and Integration tests for all layers
 
+# Quick start
 For a quick start, just fill in the following properties in the application.properties file:
 - spring.datasource.username
 - spring.datasource.password
 - spring.datasource.url
 
+# Dependencies
 The included pom.xml contains the following dependencies:
 - Spring Boot Starter
   - Spring Boot Starter Data JPA
@@ -34,8 +36,9 @@ The included pom.xml contains the following dependencies:
   - Findbugs
   - PMD
   - Checkstyle
-  
-Other nice things are: 
-- pre-configured xml configuration file for logback
+
+# Pre-configured
+Other nice pre-configured things are: 
+- xml configuration file for logback
 - Database initializer to populate the database with sample values
-- application properties file for development und test 
+- application properties file for development and test (profiles)
