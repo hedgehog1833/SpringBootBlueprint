@@ -1,5 +1,6 @@
-package com.wagner.blueprint.web.controller;
+package com.wagner.blueprint.web.rest;
 
+import com.wagner.blueprint.config.Endpoints;
 import com.wagner.blueprint.framework.controller.SimpleCrudRestController;
 import com.wagner.blueprint.service.EmployeeService;
 import com.wagner.blueprint.web.dto.EmployeeDto;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/rest/v1/employees")
+@RequestMapping(Endpoints.REST.EMPLOYEES_REST_V1)
 public class EmployeesRestController implements SimpleCrudRestController<EmployeeRequestDto, EmployeeDto> {
 
   private final EmployeeService employeeService;

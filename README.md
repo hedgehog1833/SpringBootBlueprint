@@ -26,7 +26,7 @@ The included pom.xml contains the following dependencies:
   - Jackson Dataformat XML
   - ModelMapper
   - Jetbrains Annotations
-  - Guava
+  - Google Guava
 - Tests
   - Spring Boot Starter Test
   - JUnit Jupiter

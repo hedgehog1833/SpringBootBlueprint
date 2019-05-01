@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Interface for basic CRUD-Operations in REST controller.
+ * Interface for basic CRUD-Operations in REST rest.
  * @param <T> DTO for Request
  * @param <U> DTO for Response
  */

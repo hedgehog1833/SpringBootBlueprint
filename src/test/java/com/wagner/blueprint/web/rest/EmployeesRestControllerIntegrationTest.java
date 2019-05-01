@@ -1,4 +1,4 @@
-package com.wagner.blueprint.web.controller;
+package com.wagner.blueprint.web.rest;
 
 import com.wagner.blueprint.service.EmployeeService;
 import com.wagner.blueprint.utils.EmployeeTestUtil;
