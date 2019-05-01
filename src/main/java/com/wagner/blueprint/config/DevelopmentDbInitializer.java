@@ -33,8 +33,9 @@ public class DevelopmentDbInitializer implements ApplicationRunner {
             .firstName("John")
             .lastName("Doe")
             .email("john.doe@example.com")
+            .teamName("Frontend")
             .birthday(LocalDate.of(1970, 1, 1))
-            .isActive(true)
+            .active(true)
             .job("Java Developer")
             .careerLevel("Senior")
             .build();
@@ -43,8 +44,9 @@ public class DevelopmentDbInitializer implements ApplicationRunner {
             .firstName("Owen")
             .lastName("Hunt")
             .email("owen.hunt@example.com")
+            .teamName("Backend")
             .birthday(LocalDate.of(1992, 10, 26))
-            .isActive(true)
+            .active(true)
             .job("Java Developer")
             .careerLevel("Junior")
             .build();
@@ -53,8 +55,9 @@ public class DevelopmentDbInitializer implements ApplicationRunner {
             .firstName("Elisa")
             .lastName("Baily")
             .email("elisa.baily@example.com")
+            .teamName("TeamPM")
             .birthday(LocalDate.of(1965, 7, 5))
-            .isActive(true)
+            .active(true)
             .job("Product Manager")
             .careerLevel("Experienced Senior")
             .build();
@@ -63,8 +66,9 @@ public class DevelopmentDbInitializer implements ApplicationRunner {
             .firstName("Tom")
             .lastName("Hart")
             .email("tom.hart@example.com")
+            .teamName("TeamQA")
             .birthday(LocalDate.of(1987, 9, 15))
-            .isActive(false)
+            .active(false)
             .job("QA Engineer")
             .careerLevel("Professional")
             .build();

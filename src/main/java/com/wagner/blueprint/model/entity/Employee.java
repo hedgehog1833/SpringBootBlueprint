@@ -26,7 +26,10 @@ public class Employee extends AbstractEntity {
   @Column(unique = true, nullable = false)
   private String email;
 
-  private boolean isActive;
+  @Column(nullable = false)
+  private String teamName;
+
+  private boolean active;
   private LocalDate birthday;
   private String job;
   private String careerLevel;

@@ -1,10 +1,42 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Hallo Welt!</title>
-</head>
-<body>
-  <h1>Hallo Welt!</h1>
-</body>
+  <head data-th-replace="header :: copy"></head>
+  <body>
+  <nav data-th-replace="navigation :: copy"></nav>
+
+  <div class="container">
+    <h1>Employees</h1>
+    <table class="employee-table table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">eMail</th>
+        <th scope="col">Date of birth</th>
+        <th scope="col">Team</th>
+        <th scope="col">Job</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-th-each="employee : ${employees}">
+        <td data-th-text="${employee.firstName} + ' ' + ${employee.lastName}"></td>
+        <td data-th-text="${employee.email}"></td>
+        <td data-th-text="${employee.birthday}"></td>
+        <td data-th-text="${employee.teamName}"></td>
+        <td data-th-text="${employee.careerLevel} + ' ' + ${employee.job}"></td>
+        <td>
+          <span data-th-if="${employee.active}"class="badge badge-success">Active</span>
+          <span data-th-unless="${employee.active}" class="badge badge-secondary">Inactive</span>
+        </td>
+        <td>
+          <a href="#" data-th-href="@{employees/edit/id}"><i class="material-icons table-action-icon">edit</i></a>
+          <a href="#" data-th-href="@{employees/delete/id}"><i class="material-icons table-action-icon">delete</i></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div data-th-replace="footer :: copy"></div>
+  </body>
 </html>

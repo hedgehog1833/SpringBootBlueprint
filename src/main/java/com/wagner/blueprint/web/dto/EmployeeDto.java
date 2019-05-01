@@ -12,7 +12,8 @@ public class EmployeeDto extends AbstractEntityDto {
   private String    firstName;
   private String    lastName;
   private String    email;
-  private boolean   isActive;
+  private String    teamName;
+  private boolean   active;
   private LocalDate birthday;
   private String    job;
   private String    careerLevel;

@@ -72,6 +72,7 @@ class EmployeeServiceImplTest {
       assertEquals(expectedEmployee.getFirstName(), actualEmployee.getFirstName());
       assertEquals(expectedEmployee.getLastName(), actualEmployee.getLastName());
       assertEquals(expectedEmployee.getEmail(), actualEmployee.getEmail());
+      assertEquals(expectedEmployee.getTeamName(), actualEmployee.getTeamName());
       assertEquals(expectedEmployee.getBirthday(), actualEmployee.getBirthday());
       assertEquals(expectedEmployee.getCareerLevel(), actualEmployee.getCareerLevel());
       assertEquals(expectedEmployee.getJob(), actualEmployee.getJob());
@@ -195,6 +196,7 @@ class EmployeeServiceImplTest {
     assertEquals(entity.getLastName(), dto.getLastName());
     assertEquals(entity.getBirthday(), dto.getBirthday());
     assertEquals(entity.getEmail(), dto.getEmail());
+    assertEquals(entity.getTeamName(), dto.getTeamName());
     assertEquals(entity.getJob(), dto.getJob());
     assertEquals(entity.getCareerLevel(), dto.getCareerLevel());
     assertEquals(entity.isActive(), dto.isActive());
@@ -205,6 +207,7 @@ class EmployeeServiceImplTest {
     assertEquals(requestDto.getLastName(), dto.getLastName());
     assertEquals(requestDto.getBirthday(), dto.getBirthday());
     assertEquals(requestDto.getEmail(), dto.getEmail());
+    assertEquals(requestDto.getTeamName(), dto.getTeamName());
     assertEquals(requestDto.getJob(), dto.getJob());
     assertEquals(requestDto.getCareerLevel(), dto.getCareerLevel());
     assertEquals(requestDto.isActive(), dto.isActive());

@@ -50,6 +50,7 @@ class EmployeeRepositoryIntegrationTest {
     assertThat(employeeResponse.getFirstName()).isEqualTo(employee.getFirstName());
     assertThat(employeeResponse.getLastName()).isEqualTo(employee.getLastName());
     assertThat(employeeResponse.getEmail()).isEqualTo(employee.getEmail());
+    assertThat(employeeResponse.getTeamName()).isEqualTo(employee.getTeamName());
     assertThat(employeeResponse.getBirthday()).isEqualTo(employee.getBirthday());
     assertThat(employeeResponse.getJob()).isEqualTo(employee.getJob());
     assertThat(employeeResponse.getCareerLevel()).isEqualTo(employee.getCareerLevel());

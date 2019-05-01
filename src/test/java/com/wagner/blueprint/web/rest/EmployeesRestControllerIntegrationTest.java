@@ -73,6 +73,7 @@ class EmployeesRestControllerIntegrationTest {
     assertEquals("John", responseDto.getFirstName());
     assertEquals("Doe", responseDto.getLastName());
     assertEquals("john.doe@example.com", responseDto.getEmail());
+    assertEquals("Frontend", responseDto.getTeamName());
     assertEquals(LocalDate.of(1970, 1, 1), responseDto.getBirthday());
     assertTrue(responseDto.isActive());
     assertEquals("Java Developer", responseDto.getJob());
@@ -109,6 +110,7 @@ class EmployeesRestControllerIntegrationTest {
       assertNotNull(employeeDto.getFirstName());
       assertNotNull(employeeDto.getLastName());
       assertNotNull(employeeDto.getEmail());
+      assertNotNull(employeeDto.getTeamName());
       assertNotNull(employeeDto.getBirthday());
       assertNotNull(employeeDto.getJob());
       assertNotNull(employeeDto.getCareerLevel());
@@ -134,6 +136,7 @@ class EmployeesRestControllerIntegrationTest {
     assertEquals(employeeRequestDto.getFirstName(), createdEmployee.getFirstName());
     assertEquals(employeeRequestDto.getLastName(), createdEmployee.getLastName());
     assertEquals(employeeRequestDto.getEmail(), createdEmployee.getEmail());
+    assertEquals(employeeRequestDto.getTeamName(), createdEmployee.getTeamName());
     assertEquals(employeeRequestDto.getBirthday(), createdEmployee.getBirthday());
     assertEquals(employeeRequestDto.isActive(), createdEmployee.isActive());
     assertEquals(employeeRequestDto.getJob(), createdEmployee.getJob());
@@ -153,6 +156,7 @@ class EmployeesRestControllerIntegrationTest {
     request.put("firstName", null);
     request.put("lastName", " ");
     request.put("email", "valid-email@mail.de");
+    request.put("teamName", null);
 
     ValidatableResponse validatableResponse = requestHandler.doPost(ContentType.JSON, request);
     ErrorResponse       errorResponse       = validatableResponse.extract().as(ErrorResponse.class);
@@ -162,7 +166,7 @@ class EmployeesRestControllerIntegrationTest {
                        .contentType(ContentType.JSON);
 
     assertNotNull(errorResponse);
-    assertEquals(3, errorResponse.getMessages().size());
+    assertEquals(4, errorResponse.getMessages().size());
   }
 
   @Test
@@ -183,6 +187,7 @@ class EmployeesRestControllerIntegrationTest {
     assertEquals(employeeRequestDto.getFirstName(), updatedEmployeeDto.getFirstName());
     assertEquals(employeeRequestDto.getLastName(), updatedEmployeeDto.getLastName());
     assertEquals(employeeRequestDto.getEmail(), updatedEmployeeDto.getEmail());
+    assertEquals(employeeRequestDto.getTeamName(), updatedEmployeeDto.getTeamName());
     assertEquals(employeeRequestDto.getBirthday(), updatedEmployeeDto.getBirthday());
     assertEquals(employeeRequestDto.isActive(), updatedEmployeeDto.isActive());
     assertEquals(employeeRequestDto.getJob(), updatedEmployeeDto.getJob());
@@ -209,6 +214,7 @@ class EmployeesRestControllerIntegrationTest {
     request.put("firstName", "");
     request.put("lastName", null);
     request.put("email", "invalid-email");
+    request.put("teamName", " ");
 
     ValidatableResponse validatableResponse = requestHandler.doPut(ContentType.JSON, request, RESOURCE_ID);
     ErrorResponse       errorResponse       = validatableResponse.extract().as(ErrorResponse.class);
@@ -218,7 +224,7 @@ class EmployeesRestControllerIntegrationTest {
                        .contentType(ContentType.JSON);
 
     assertNotNull(errorResponse);
-    assertEquals(4, errorResponse.getMessages().size());
+    assertEquals(5, errorResponse.getMessages().size());
   }
 
   @Test

@@ -24,7 +24,10 @@ public class EmployeeRequestDto {
   @Email
   private String email;
 
-  private boolean isActive;
+  @NotBlank
+  private String teamName;
+
+  private boolean active;
   private LocalDate birthday;
   private String job;
   private String careerLevel;
@@ -34,7 +37,8 @@ public class EmployeeRequestDto {
     map.put("firstName", firstName);
     map.put("lastName", lastName);
     map.put("email", email);
-    map.put("isActive", isActive);
+    map.put("teamName", teamName);
+    map.put("active", active);
     map.put("birthday", birthday);
     map.put("job", job);
     map.put("careerLevel", careerLevel);

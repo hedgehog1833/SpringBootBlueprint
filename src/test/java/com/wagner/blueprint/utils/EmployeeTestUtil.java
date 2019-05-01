@@ -16,6 +16,7 @@ public class EmployeeTestUtil {
     employee.setFirstName(RandomGenerator.randomFirstName());
     employee.setLastName(RandomGenerator.randomLastName());
     employee.setEmail(RandomGenerator.randomEmail());
+    employee.setTeamName(RandomGenerator.randomString(10));
     employee.setBirthday(RandomGenerator.randomLocalDate());
     employee.setActive(RandomGenerator.randomBoolean());
     employee.setJob(RandomGenerator.randomString(5));
@@ -30,8 +31,9 @@ public class EmployeeTestUtil {
             .firstName(RandomGenerator.randomFirstName())
             .lastName(RandomGenerator.randomLastName())
             .email(RandomGenerator.randomEmail())
+            .teamName(RandomGenerator.randomString(10))
             .birthday(RandomGenerator.randomLocalDate())
-            .isActive(RandomGenerator.randomBoolean())
+            .active(RandomGenerator.randomBoolean())
             .job(RandomGenerator.randomString(5))
             .careerLevel(RandomGenerator.randomString(10))
             .build();
@@ -43,7 +45,8 @@ public class EmployeeTestUtil {
     dto.setId(1);
     dto.setFirstName(RandomGenerator.randomFirstName());
     dto.setLastName(RandomGenerator.randomLastName());
-    dto.setEmail(RandomGenerator.randomLastName());
+    dto.setEmail(RandomGenerator.randomEmail());
+    dto.setTeamName(RandomGenerator.randomString(10));
     dto.setBirthday(RandomGenerator.randomLocalDate());
     dto.setActive(RandomGenerator.randomBoolean());
     dto.setJob(RandomGenerator.randomString(5));
