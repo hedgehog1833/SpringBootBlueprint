@@ -1,0 +1,22 @@
+<nav data-th-fragment="copy">
+  <ul class="pagination pagination-sm justify-content-end">
+    <!-- Previous page-->
+    <li class="page-item" data-th-classappend="${pagination.previousPageDisabled}? 'disabled'">
+      <a class="page-link" href="#" aria-label="Previous" data-th-href="@{ ${pagination.previousPageUrlQueryParam} }">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <!-- Page -->
+    <li data-th-each="page : ${#numbers.sequence(1, __${pagination.numberOfPages}__)}" class="page-item" data-th-classappend="${pagination.currentPage} == ${page}? 'active'">
+      <a class="page-link" href="#" data-th-text="${page}" data-th-href="@{ ${pagination.pageParamUrlPart} + ${page} }">#</a>
+    </li>
+
+    <!-- Next page-->
+    <li class="page-item" data-th-classappend="${pagination.nextPageDisabled}? 'disabled'">
+      <a class="page-link" data-th-href="@{ ${pagination.nextPageUrlQueryParam} }" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

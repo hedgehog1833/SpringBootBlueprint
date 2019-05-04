@@ -8,6 +8,8 @@ import com.wagner.blueprint.web.dto.request.EmployeeRequestDto;
 import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,6 +36,22 @@ public class EmployeeServiceImpl implements EmployeeService {
             .stream()
             .map(employee -> modelMapper.map(employee, EmployeeDto.class))
             .collect(Collectors.toList());
+  }
+
+  @NotNull
+  @Override
+  public List<EmployeeDto> findAll(int currentPage, int itemsPerPage) {
+    // PageRequest is index based, web frontend is not
+    Pageable pageRequest = PageRequest.of(currentPage - 1, itemsPerPage);
+    return employeeRepository.findAll(pageRequest)
+            .stream()
+            .map(employee -> modelMapper.map(employee, EmployeeDto.class))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public long getCount() {
+    return employeeRepository.count();
   }
 
   @NotNull

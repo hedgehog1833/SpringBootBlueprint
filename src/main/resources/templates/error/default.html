@@ -1,11 +1,11 @@
 <!DOCTYPE>
 <html>
-<head data-th-replace="header :: copy"></head>
+<head data-th-replace="fragments/header :: copy"></head>
 <body>
 <div class="container">
     <h1>Sorry, we couldn't find the page you were looking for (<span data-th-text="${requestedURI}">requested uri</span>)</h1>
     <a href="#" data-th-href="@{/index}">Home</a>
 </div>
-<div data-th-replace="footer :: copy"></div>
+<div data-th-replace="fragments/footer :: copy"></div>
 </body>
 </html>

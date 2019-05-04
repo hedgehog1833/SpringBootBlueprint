@@ -1,8 +1,8 @@
 <!DOCTYPE>
 <html lang="en">
-  <head data-th-replace="header :: copy"></head>
+  <head data-th-replace="fragments/header :: copy"></head>
   <body>
-  <nav data-th-replace="navigation :: copy"></nav>
+  <nav data-th-replace="fragments/navigation :: copy"></nav>
 
   <div class="container">
     <h1>Employees</h1>
@@ -26,7 +26,7 @@
         <td data-th-text="${employee.teamName}"></td>
         <td data-th-text="${employee.careerLevel} + ' ' + ${employee.job}"></td>
         <td>
-          <span data-th-if="${employee.active}"class="badge badge-success">Active</span>
+          <span data-th-if="${employee.active}" class="badge badge-success">Active</span>
           <span data-th-unless="${employee.active}" class="badge badge-secondary">Inactive</span>
         </td>
         <td>
@@ -36,7 +36,11 @@
       </tr>
       </tbody>
     </table>
+
+    <!-- Pagination -->
+    <nav data-th-replace="fragments/pagination :: copy"></nav>
+
   </div>
-  <div data-th-replace="footer :: copy"></div>
+  <div data-th-replace="fragments/footer :: copy"></div>
   </body>
 </html>

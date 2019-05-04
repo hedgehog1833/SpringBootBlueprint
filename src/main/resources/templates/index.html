@@ -1,26 +1,8 @@
 <!DOCTYPE>
 <html lang="en">
-  <head data-th-replace="header :: copy"></head>
+  <head data-th-replace="fragments/header :: copy"></head>
   <body>
-    <nav data-th-replace="navigation :: copy"></nav>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container">
-        <a class="navbar-brand" data-th-href="@{/}" href="#">Spring Boot Blueprint</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" data-th-href="@{/}" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-th-href="@{/employees}" href="#">Employees</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
+    <nav data-th-replace="fragments/navigation :: copy"></nav>
 
     <div class="container">
       <h1>Home</h1>
@@ -29,6 +11,6 @@
       </p>
     </div>
 
-    <div data-th-replace="footer :: copy"></div>
+    <div data-th-replace="fragments/footer :: copy"></div>
   </body>
 </html>

@@ -8,12 +8,15 @@ import java.util.Optional;
 /**
  * Service interface for CRUD-Operations.
  * @param <T> DTO for Request
- * @param <U> DTO for Response
+ * @param <U> DTO for response
  */
 public interface SimpleCrudService<T, U> {
 
   @NotNull
   List<U> findAll();
+
+  @NotNull
+  List<U> findAll(int currentPage, int itemsPerPage);
 
   @NotNull
   Optional<U> find(long id);
