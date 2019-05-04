@@ -11,8 +11,3 @@ public class SpringBootBlueprintApplication {
   }
 
 }
-
-// ToDo DanielW: Erweiterung der REST-API um folgende Use cases:
-//  - Employee nach lastName suchen
-//  - ReadMe anpassen
-//  - Employee nach Team suchen

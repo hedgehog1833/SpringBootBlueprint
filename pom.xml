@@ -63,8 +63,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <!-- H2-Console is under http://localhost:8080/h2-console if scope is runtime -->
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>

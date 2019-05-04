@@ -9,7 +9,7 @@ class RandomGenerator {
 
   private static final String          ALPHABETIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   private static final List<String>    FIRST_NAMES       = Arrays.asList("Daniel", "Owen", "Olivia", "Marc", "Robert", "Christian");
-  private static final List<String>    LAST_NAMES        = Arrays.asList("Hunt", "Grey", "Hart", "Wilson", "Brown", "Jackson", "Rhimes");
+  private static final List<String>    LAST_NAMES        = Arrays.asList("Huntington", "Gray", "Greene", "Wilson", "Brown", "Jackson", "Rhimes");
   private static final List<LocalDate> LOCAL_DATES       = Arrays.asList(LocalDate.of(1970, 1 , 1), LocalDate.of(1980, 7, 4),
           LocalDate.of(1983, 11, 11), LocalDate.of(1990, 9, 30), LocalDate.of(1979,3, 13));
 

@@ -6,6 +6,7 @@ It already includes the following:
 - Repository layer for the entity
 - Service layer for the entity
 - Rest controller for CRUD-operations regarding the entity
+- Simple web frontend based on Thymeleaf and Bootstrap 4
 - Unit and Integration tests for all layers
 
 # Quick start
@@ -19,7 +20,9 @@ The included pom.xml contains the following dependencies:
 - Spring Boot Starter
   - Spring Boot Starter Data JPA
   - Spring Boot Starter Web
+  - Spring Boot Starter Thymeleaf
   - Spring Boot DevTools
+  - Spring Boot Starter Test
 - Other
   - MySQL Connector
   - Lombok
@@ -28,7 +31,6 @@ The included pom.xml contains the following dependencies:
   - Jetbrains Annotations
   - Google Guava
 - Tests
-  - Spring Boot Starter Test
   - JUnit Jupiter
   - H2-Database
   - RestAssured

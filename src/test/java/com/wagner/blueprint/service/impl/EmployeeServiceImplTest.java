@@ -65,19 +65,7 @@ class EmployeeServiceImplTest {
             .map(entity -> new ModelMapper().map(entity, EmployeeDto.class))
             .collect(Collectors.toList());
 
-    for (int index = 0; index < expectedEmployeeList.size(); index++) {
-      EmployeeDto actualEmployee   = actualEmployeeList.get(index);
-      EmployeeDto expectedEmployee = expectedEmployeeList.get(index);
-      
-      assertEquals(expectedEmployee.getFirstName(), actualEmployee.getFirstName());
-      assertEquals(expectedEmployee.getLastName(), actualEmployee.getLastName());
-      assertEquals(expectedEmployee.getEmail(), actualEmployee.getEmail());
-      assertEquals(expectedEmployee.getTeamName(), actualEmployee.getTeamName());
-      assertEquals(expectedEmployee.getBirthday(), actualEmployee.getBirthday());
-      assertEquals(expectedEmployee.getCareerLevel(), actualEmployee.getCareerLevel());
-      assertEquals(expectedEmployee.getJob(), actualEmployee.getJob());
-      assertEquals(expectedEmployee.isActive(), actualEmployee.isActive());
-    }
+    assertThatEmployeeDtosAreEqual(expectedEmployeeList, actualEmployeeList);
   }
 
   @Test
@@ -105,6 +93,26 @@ class EmployeeServiceImplTest {
     // then
     assertFalse(employeeDto.isPresent());
     verify(employeeRepository, times(1)).findById(anyLong());
+  }
+
+  @Test
+  void test_find_by_team_name() {
+    // given
+    List<Employee> employees = Arrays.asList(employeeEntity2, employeeEntity1);
+    when(employeeRepository.findByTeamName(anyString())).thenReturn(employees);
+
+    // when
+    List<EmployeeDto> actualEmployeeList = employeeService.findByTeamName("");
+
+    // then
+    assertFalse(actualEmployeeList.isEmpty());
+    verify(employeeRepository, times(1)).findByTeamName(anyString());
+
+    List<EmployeeDto> expectedEmployeeList = employees.stream()
+            .map(entity -> new ModelMapper().map(entity, EmployeeDto.class))
+            .collect(Collectors.toList());
+
+    assertThatEmployeeDtosAreEqual(expectedEmployeeList, actualEmployeeList);
   }
 
   @Test
@@ -211,6 +219,22 @@ class EmployeeServiceImplTest {
     assertEquals(requestDto.getJob(), dto.getJob());
     assertEquals(requestDto.getCareerLevel(), dto.getCareerLevel());
     assertEquals(requestDto.isActive(), dto.isActive());
+  }
+
+  private void assertThatEmployeeDtosAreEqual(List<EmployeeDto> expected, List<EmployeeDto> actual) {
+    for (int index = 0; index < expected.size(); index++) {
+      EmployeeDto actualEmployee   = actual.get(index);
+      EmployeeDto expectedEmployee = expected.get(index);
+
+      assertEquals(expectedEmployee.getFirstName(), actualEmployee.getFirstName());
+      assertEquals(expectedEmployee.getLastName(), actualEmployee.getLastName());
+      assertEquals(expectedEmployee.getEmail(), actualEmployee.getEmail());
+      assertEquals(expectedEmployee.getTeamName(), actualEmployee.getTeamName());
+      assertEquals(expectedEmployee.getBirthday(), actualEmployee.getBirthday());
+      assertEquals(expectedEmployee.getCareerLevel(), actualEmployee.getCareerLevel());
+      assertEquals(expectedEmployee.getJob(), actualEmployee.getJob());
+      assertEquals(expectedEmployee.isActive(), actualEmployee.isActive());
+    }
   }
 
 }

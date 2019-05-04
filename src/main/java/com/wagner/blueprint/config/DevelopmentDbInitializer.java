@@ -73,7 +73,18 @@ public class DevelopmentDbInitializer implements ApplicationRunner {
             .careerLevel("Professional")
             .build();
 
-    List<EmployeeRequestDto> employeeDtos = Arrays.asList(employee1, employee2, employee3, employee4);
+    EmployeeRequestDto employee5 = EmployeeRequestDto.builder()
+            .firstName("Miranda")
+            .lastName("Grey")
+            .email("miranda.grey@example.com")
+            .teamName("Backend")
+            .birthday(LocalDate.of(1982, 1, 15))
+            .active(true)
+            .job("Java Developer")
+            .careerLevel("Senior")
+            .build();
+
+    List<EmployeeRequestDto> employeeDtos = Arrays.asList(employee1, employee2, employee3, employee4, employee5);
     employeeService.createAll(employeeDtos);
   }
 

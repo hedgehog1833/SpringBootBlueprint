@@ -50,6 +50,14 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Override
+  public List<EmployeeDto> findByTeamName(String teamName) {
+    return employeeRepository.findByTeamName(teamName)
+            .stream()
+            .map(employee -> modelMapper.map(employee, EmployeeDto.class))
+            .collect(Collectors.toList());
+  }
+
+  @Override
   public long getCount() {
     return employeeRepository.count();
   }

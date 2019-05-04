@@ -42,11 +42,9 @@ class EmployeesRestControllerIntegrationTest {
   @LocalServerPort
   private int port;
 
-  private EmployeeDto employeeDto;
-  private EmployeeRequestDto employeeRequestDto;
-
   @Autowired
   private EmployeeService employeeService;
+  private EmployeeRequestDto employeeRequestDto;
 
   private RestAssuredRequestHandler requestHandler;
 
@@ -54,12 +52,11 @@ class EmployeesRestControllerIntegrationTest {
   void setUp() {
     String requestUri  = "http://" + serverAddress + ":" + port + RESOURCE_PATH;
     requestHandler     = new RestAssuredRequestHandler(requestUri);
-    employeeDto        = EmployeeTestUtil.createDummyDto();
     employeeRequestDto = EmployeeTestUtil.createDummyRequestDto();
   }
 
   @Test
-  void test_get() {
+  void get() {
     ValidatableResponse response = requestHandler.doGet(ContentType.JSON, RESOURCE_ID);
 
     // assert
@@ -89,7 +86,7 @@ class EmployeesRestControllerIntegrationTest {
   }
 
   @Test
-  void getAll() {
+  void get_all() {
     ValidatableResponse validatableResponse = requestHandler.doGetAll(ContentType.JSON);
 
     // assert
@@ -102,7 +99,7 @@ class EmployeesRestControllerIntegrationTest {
     assertNotNull(response.getBody());
 
     EmployeeDto[] employeeDtos = response.getBody().as(EmployeeDto[].class);
-    assertEquals(4, employeeDtos.length);
+    assertEquals(5, employeeDtos.length);
 
     // assert that all fields have a value
     Stream.of(employeeDtos).forEach(employeeDto -> {
@@ -111,6 +108,43 @@ class EmployeesRestControllerIntegrationTest {
       assertNotNull(employeeDto.getLastName());
       assertNotNull(employeeDto.getEmail());
       assertNotNull(employeeDto.getTeamName());
+      assertNotNull(employeeDto.getBirthday());
+      assertNotNull(employeeDto.getJob());
+      assertNotNull(employeeDto.getCareerLevel());
+      assertNotNull(employeeDto.getCreatedDate());
+      assertNotNull(employeeDto.getCreatedBy());
+      assertNotNull(employeeDto.getLastModifiedDate());
+      assertNotNull(employeeDto.getLastModifiedBy());
+    });
+  }
+
+  @Test
+  void get_all_by_team_name() {
+    String teamName = "Backend";
+    Map<String, String> queryParams = new HashMap<>();
+    queryParams.put("teamName", teamName);
+
+    ValidatableResponse validatableResponse = requestHandler.doGetAll(ContentType.JSON, "search", queryParams);
+
+    // assert
+    validatableResponse.contentType(ContentType.JSON)
+                       .statusCode(HttpStatus.OK.value());
+
+    Response response = validatableResponse.extract().response();
+
+    assertNotNull(response);
+    assertNotNull(response.getBody());
+
+    EmployeeDto[] employeeDtos = response.getBody().as(EmployeeDto[].class);
+    assertEquals(2, employeeDtos.length);
+
+    // assert that all fields have a value and the team name is equal to the requested team name
+    Stream.of(employeeDtos).forEach(employeeDto -> {
+      assertTrue(employeeDto.getId() != 0);
+      assertNotNull(employeeDto.getFirstName());
+      assertNotNull(employeeDto.getLastName());
+      assertNotNull(employeeDto.getEmail());
+      assertEquals(teamName, employeeDto.getTeamName());
       assertNotNull(employeeDto.getBirthday());
       assertNotNull(employeeDto.getJob());
       assertNotNull(employeeDto.getCareerLevel());

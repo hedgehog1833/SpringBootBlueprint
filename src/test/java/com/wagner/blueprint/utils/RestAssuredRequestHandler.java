@@ -32,6 +32,15 @@ public class RestAssuredRequestHandler {
            .then();
   }
 
+  public ValidatableResponse doGetAll(ContentType accept, String pathParam, Map<String, String> queryParams) {
+    return given()
+            .accept(accept)
+            .queryParams(queryParams)
+           .when()
+            .get(requestUri + "/" + pathParam)
+           .then();
+  }
+
   public ValidatableResponse doPost(ContentType accept, Map<String, ?> request) {
     return given()
             .contentType(accept)

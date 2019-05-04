@@ -43,6 +43,16 @@ public class EmployeesRestController implements SimpleCrudRestController<Employe
     return ResponseEntity.ok(employeeDtos);
   }
 
+  @GetMapping(path = "/search", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+  public ResponseEntity<List<EmployeeDto>> getAllByTeam(@RequestParam(name = "teamName", defaultValue = "") String teamName) {
+    if (teamName.isEmpty()) {
+      return getAll();
+    }
+
+    List<EmployeeDto> employeeDtos = employeeService.findByTeamName(teamName);
+    return ResponseEntity.ok(employeeDtos);
+  }
+
   @Override
   @PostMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
                consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})

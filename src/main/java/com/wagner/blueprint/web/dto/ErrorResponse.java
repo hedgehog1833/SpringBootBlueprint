@@ -18,11 +18,6 @@ public class ErrorResponse {
   private LocalDateTime timestamp;
   private List<String> messages = new ArrayList<>();
 
-  public ErrorResponse(String message) {
-    this.timestamp = LocalDateTime.now();
-    messages.add(message);
-  }
-
   public ErrorResponse(List<String> messages) {
     this.timestamp = LocalDateTime.now();
     this.messages  = messages;
