@@ -1,17 +1,18 @@
 package com.wagner.blueprint.web.dto.request;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class EmployeeRequestDto {
 
@@ -22,6 +23,7 @@ public class EmployeeRequestDto {
   private String lastName;
 
   @Email
+  @NotEmpty
   private String email;
 
   @NotBlank

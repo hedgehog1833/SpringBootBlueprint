@@ -6,6 +6,7 @@
 
   <div class="container">
     <h1>Employees</h1>
+    <a type="button" class="btn btn-primary btn-sm" href="#" data-th-href="@{ ${createUrl} }">New Employee</a>
     <table class="employee-table table table-hover">
       <thead>
       <tr>
@@ -20,23 +21,22 @@
       </thead>
       <tbody>
       <tr data-th-each="employee : ${employees}">
-        <td data-th-text="${employee.firstName} + ' ' + ${employee.lastName}"></td>
+        <td data-th-text="${employee.name}"></td>
         <td data-th-text="${employee.email}"></td>
         <td data-th-text="${employee.birthday}"></td>
         <td data-th-text="${employee.teamName}"></td>
-        <td data-th-text="${employee.careerLevel} + ' ' + ${employee.job}"></td>
+        <td data-th-text="${employee.levelAndJob}"></td>
         <td>
           <span data-th-if="${employee.active}" class="badge badge-success">Active</span>
           <span data-th-unless="${employee.active}" class="badge badge-secondary">Inactive</span>
         </td>
         <td>
-          <a href="#" data-th-href="@{employees/edit/id}"><i class="material-icons table-action-icon">edit</i></a>
-          <a href="#" data-th-href="@{employees/delete/id}"><i class="material-icons table-action-icon">delete</i></a>
+          <a href="#" data-th-href="@{ ${employee.editUrl} }"><i class="material-icons table-action-icon">edit</i></a>
+          <a href="#" data-th-href="@{ ${employee.deleteUrl} }"><i class="material-icons table-action-icon">delete</i></a>
         </td>
       </tr>
       </tbody>
     </table>
-
     <!-- Pagination -->
     <nav data-th-replace="fragments/pagination :: copy"></nav>
 

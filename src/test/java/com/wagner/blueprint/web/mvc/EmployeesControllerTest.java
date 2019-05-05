@@ -31,7 +31,7 @@ class EmployeesControllerTest {
     mockMvc.perform(get(Endpoints.EMPLOYEES_LIST))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(view().name(ViewNames.EMPLOYESS))
+            .andExpect(view().name(ViewNames.EMPLOYESS_LIST))
             .andExpect(content().string(containsString("Employees")));
   }
 
@@ -40,7 +40,7 @@ class EmployeesControllerTest {
     mockMvc.perform(get(Endpoints.EMPLOYEES_LIST + "?page=2"))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(view().name(ViewNames.EMPLOYESS))
+            .andExpect(view().name(ViewNames.EMPLOYESS_LIST))
             .andExpect(model().attributeExists("employees", "pagination"))
             .andExpect(content().string(containsString("Employees")));
   }

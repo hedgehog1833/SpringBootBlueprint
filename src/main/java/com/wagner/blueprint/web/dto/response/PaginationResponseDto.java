@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @SuppressWarnings({"unused", "WeakerAccess"}) // used as view model in html
-public class PaginationResponse {
+public class PaginationResponseDto {
 
   private static final String PAGE_QUERY_PARAM_NAME = "page";
 
