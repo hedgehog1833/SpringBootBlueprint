@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ import java.util.Map;
 @NoArgsConstructor
 @Builder
 public class EmployeeRequestDto {
+
+  private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
   @NotBlank
   private String firstName;
@@ -46,6 +49,10 @@ public class EmployeeRequestDto {
     map.put("careerLevel", careerLevel);
 
     return map;
+  }
+
+  public void setBirthday(String birthdayStr) {
+    birthday = LocalDate.parse(birthdayStr, dateTimeFormatter);
   }
 
 }
