@@ -31,8 +31,8 @@
         <appender-ref ref="Console" />
     </root>
 
-    <!-- LOG "com.wagner.*" at INFO level -->
-    <logger name="com.wagner" level="info" additivity="false">
+    <!-- LOG "com.dammenhayn.*" at INFO level -->
+    <logger name="com.dammenhayn" level="info" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>

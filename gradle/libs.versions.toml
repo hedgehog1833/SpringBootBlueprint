@@ -1,0 +1,4 @@
+[versions]
+groovy = "3.0.8"
+postgresql = "42.2.19"
+spock = "2.0-groovy-3.0"
