@@ -7,6 +7,8 @@ import com.wagner.blueprint.web.dto.EmployeeDto;
 import com.wagner.blueprint.web.dto.request.EmployeeRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -68,13 +70,14 @@ class EmployeeServiceImplTest {
     assertThatEmployeeDtosAreEqual(expectedEmployeeList, actualEmployeeList);
   }
 
-  @Test
-  void test_find() {
+  @ParameterizedTest
+  @ValueSource(longs = {1,2})
+  void test_find(long bla) {
     // given
     when(employeeRepository.findById(anyLong())).thenReturn(Optional.of(employeeEntity1));
 
     // when
-    Optional<EmployeeDto> employeeDto = employeeService.find(1);
+    Optional<EmployeeDto> employeeDto = employeeService.find(bla);
 
     // then
     assertTrue(employeeDto.isPresent());
