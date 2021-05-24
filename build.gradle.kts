@@ -1,6 +1,6 @@
 val javaVersion: JavaVersion = JavaVersion.VERSION_11
 val dependencyVersions: List<String> = listOf(
-    "org.jetbrains:annotations:20.1.0"
+    "org.jetbrains:annotations:21.0.0"
 )
 val dependencyGroupVersions: Map<String, String> = mapOf()
 
