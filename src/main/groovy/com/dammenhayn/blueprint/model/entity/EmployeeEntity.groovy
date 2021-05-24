@@ -1,13 +1,14 @@
 package com.dammenhayn.blueprint.model.entity
 
+import groovy.transform.EqualsAndHashCode
+
 import javax.persistence.Column
 import javax.persistence.Entity
 import java.time.LocalDate
 
 @Entity(name = "employees")
+@EqualsAndHashCode(callSuper = true)
 class EmployeeEntity extends AbstractEntity {
-
-  public static final long serialVersionUID = 1L
 
   @Column(nullable = false)
   String firstName
@@ -19,11 +20,10 @@ class EmployeeEntity extends AbstractEntity {
   String email
 
   @Column(nullable = false)
-  String teamName
+  String team
 
-  boolean active
+  Boolean active
   LocalDate birthday
   String job
   String careerLevel
-
 }

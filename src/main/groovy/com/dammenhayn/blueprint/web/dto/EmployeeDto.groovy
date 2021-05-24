@@ -5,13 +5,12 @@ import groovy.transform.EqualsAndHashCode
 import java.time.LocalDate
 
 @EqualsAndHashCode
-class EmployeeDto extends AbstractEntityDto {
+class EmployeeDto {
 
-  long id
   String firstName
   String lastName
   String email
-  String teamName
+  String team
   boolean active
   LocalDate birthday
   String job

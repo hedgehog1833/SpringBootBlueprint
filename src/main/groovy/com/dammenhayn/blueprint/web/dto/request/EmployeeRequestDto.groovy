@@ -14,11 +14,11 @@ class EmployeeRequestDto {
   String lastName
 
   @Email
-  @NotEmpty
+  @NotBlank
   String email
 
   @NotBlank
-  String teamName
+  String team
 
   boolean active
   LocalDate birthday

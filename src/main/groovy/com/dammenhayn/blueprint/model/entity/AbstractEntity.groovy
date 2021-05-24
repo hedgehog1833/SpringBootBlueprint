@@ -18,33 +18,27 @@ import java.time.LocalDate
 import java.time.ZoneId
 
 @MappedSuperclass
-@EntityListeners([AuditingEntityListener])
-@EqualsAndHashCode
+@EntityListeners(AuditingEntityListener)
+@EqualsAndHashCode(includes = "id")
 abstract class AbstractEntity {
-
-  public static final long serialVersionUID = 1L
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id
+  Long id
 
   @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
-  private Date createdDate
+  Date createdDate
 
   @CreatedBy
-  private String createdBy
+  String createdBy
 
   @LastModifiedDate
   @Temporal(TemporalType.TIMESTAMP)
-  private Date lastModifiedDate
+  Date lastModifiedDate
 
   @LastModifiedBy
-  private String lastModifiedBy
-
-  long getId() {
-    return id
-  }
+  String lastModifiedBy
 
   LocalDate getCreatedDate() {
     return createdDate != null ? createdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() : null

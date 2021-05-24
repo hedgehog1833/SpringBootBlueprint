@@ -4,7 +4,6 @@ import com.dammenhayn.blueprint.model.entity.EmployeeEntity
 import com.dammenhayn.blueprint.model.repository.EmployeeRepository
 import com.dammenhayn.blueprint.web.dto.EmployeeDto
 import com.dammenhayn.blueprint.web.dto.request.EmployeeRequestDto
-import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -16,12 +15,12 @@ class EmployeeServiceImpl implements EmployeeService {
   @Autowired
   EmployeeRepository employeeRepository
   @Autowired
-  ModelMapper modelMapper
+  EmployeeMapper employeeMapper
 
   @Override
   List<EmployeeDto> findAll() {
     return employeeRepository.findAll().collect {
-      modelMapper.map(it, EmployeeDto)
+      employeeMapper.map(it)
     }
   }
 
@@ -30,14 +29,14 @@ class EmployeeServiceImpl implements EmployeeService {
     // PageRequest is index based, web frontend is not
     Pageable pageRequest = PageRequest.of(currentPage - 1, itemsPerPage)
     return employeeRepository.findAll(pageRequest).collect {
-      modelMapper.map(it, EmployeeDto)
+      employeeMapper.map(it)
     }
   }
 
   @Override
   List<EmployeeDto> findByTeamName(String teamName) {
-    return employeeRepository.findByTeamName(teamName).collect {
-      modelMapper.map(it, EmployeeDto)
+    return employeeRepository.findByTeam(teamName).collect {
+      employeeMapper.map(it)
     }
   }
 
@@ -49,38 +48,42 @@ class EmployeeServiceImpl implements EmployeeService {
   @Override
   Optional<EmployeeDto> find(long id) {
     Optional<EmployeeEntity> certification = employeeRepository.findById(id)
-
-    return certification.map(value -> modelMapper.map(value, EmployeeDto))
+    return certification.map(EmployeeMapper::map)
   }
 
   @Override
   EmployeeDto create(EmployeeRequestDto request) {
-    EmployeeEntity employee = modelMapper.map(request, EmployeeEntity)
-    employeeRepository.save(employee)
-
-    return modelMapper.map(employee, EmployeeDto)
+    def employeeEntity = employeeMapper.mapEntity(request)
+    def savedEntity = employeeRepository.save(employeeEntity)
+    return employeeMapper.map(savedEntity)
   }
 
   @Override
   List<EmployeeDto> createAll(Iterable<EmployeeRequestDto> request) {
-    def employees = request.collect { modelMapper.map(it, EmployeeEntity) }
-
-    employeeRepository.saveAll(employees)
-
-    return employees.collect { modelMapper.map(it, EmployeeDto) }
+    def employeeEntities = request.collect { employeeMapper.mapEntity(it) }
+    def savedEntities = employeeRepository.saveAll(employeeEntities)
+    return savedEntities.collect { employeeMapper.map(it) }
   }
 
   @Override
   Optional<EmployeeDto> update(long id, EmployeeRequestDto request) {
-    Optional<EmployeeEntity> employeeOptional = employeeRepository.findById(id)
-    EmployeeDto employeeResponse = null
+    def employeeOptional = employeeRepository.findById(id)
+    def employeeResponse = null
 
     if (employeeOptional.isPresent()) {
-      EmployeeEntity employee = employeeOptional.get()
-      modelMapper.map(request, employee)
+      def employee = employeeOptional.get()
 
-      employeeRepository.save(employee)
-      employeeResponse = modelMapper.map(employee, EmployeeDto)
+      employee.firstName = request.firstName
+      employee.lastName = request.lastName
+      employee.email = request.email
+      employee.team = request.team
+      employee.birthday = request.birthday
+      employee.active = request.active
+      employee.job = request.job
+      employee.careerLevel = request.careerLevel
+
+      def savedEntity = employeeRepository.save(employee)
+      employeeResponse = employeeMapper.map(savedEntity)
     }
 
     return Optional.ofNullable(employeeResponse)
@@ -92,7 +95,6 @@ class EmployeeServiceImpl implements EmployeeService {
       employeeRepository.deleteById(id)
       return true
     }
-
     return false
   }
 }
