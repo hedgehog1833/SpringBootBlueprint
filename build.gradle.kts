@@ -1,11 +1,13 @@
 val javaVersion: JavaVersion = JavaVersion.VERSION_11
-val dependencyVersions: List<String> = listOf()
+val dependencyVersions: List<String> = listOf(
+    "org.jetbrains:annotations:20.1.0"
+)
 val dependencyGroupVersions: Map<String, String> = mapOf()
 
 plugins {
   id("org.springframework.boot") version "2.5.0"
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
-  id("java")
+  id("groovy")
 }
 
 springBoot {
@@ -56,7 +58,7 @@ dependencies {
 
   implementation("io.micrometer:micrometer-registry-prometheus")
 
-  implementation("org.projectlombok:lombok:1.18.20")
+//  implementation("org.projectlombok:lombok:1.18.20")
   implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
   implementation("org.modelmapper:modelmapper:2.3.0")
 
@@ -64,18 +66,18 @@ dependencies {
   implementation("org.codehaus.groovy:groovy-json:${libs.versions.groovy.get()}")
   implementation("org.codehaus.groovy:groovy-datetime:${libs.versions.groovy.get()}")
 
-  annotationProcessor("org.projectlombok:lombok:1.18.20")
+//  annotationProcessor("org.projectlombok:lombok:1.18.20")
   developmentOnly("org.springframework.boot:spring-boot-devtools")
   runtimeOnly("com.h2database:h2")
   runtimeOnly("org.postgresql:postgresql:${libs.versions.postgresql.get()}")
   annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
-//    exclude(group = "junit", module = "junit")
+    exclude(group = "junit", module = "junit")
   }
-//  testImplementation("org.codehaus.groovy:groovy-test:${libs.versions.groovy.get()}")
-//  testImplementation("org.spockframework:spock-core:${libs.versions.spock.get()}")
-//  testImplementation("org.spockframework:spock-spring:${libs.versions.spock.get()}")
+  testImplementation("org.codehaus.groovy:groovy-test:${libs.versions.groovy.get()}")
+  testImplementation("org.spockframework:spock-core:${libs.versions.spock.get()}")
+  testImplementation("org.spockframework:spock-spring:${libs.versions.spock.get()}")
   testImplementation("org.springframework.security:spring-security-test")
 }
 
