@@ -1,12 +1,13 @@
-val javaVersion: JavaVersion = JavaVersion.VERSION_11
+val javaVersion: JavaVersion = JavaVersion.VERSION_17
 val dependencyVersions: List<String> = listOf(
-    "org.jetbrains:annotations:21.0.0"
+    "org.jetbrains:annotations:21.0.0",
+    "org.junit:junit-bom:5.8.2"
 )
 val dependencyGroupVersions: Map<String, String> = mapOf()
 
 plugins {
-  id("org.springframework.boot") version "2.5.0"
-  id("io.spring.dependency-management") version "1.0.11.RELEASE"
+  id("org.springframework.boot") version "2.7.6"
+  id("io.spring.dependency-management") version "1.1.0"
   id("groovy")
 }
 
@@ -20,7 +21,7 @@ repositories {
   mavenCentral()
 }
 
-configure<JavaPluginConvention> {
+configure<JavaPluginExtension> {
   sourceCompatibility = javaVersion
   targetCompatibility = javaVersion
 }
@@ -44,7 +45,6 @@ configurations {
 tasks {
   withType<Test> {
     useJUnitPlatform()
-    testLogging.showStandardStreams = true
   }
 }
 
@@ -79,7 +79,7 @@ dependencies {
 
 tasks {
   wrapper {
-    gradleVersion = "7.0.2"
+    gradleVersion = "7.6"
     distributionType = Wrapper.DistributionType.ALL
   }
 }
