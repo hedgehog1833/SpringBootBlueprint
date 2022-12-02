@@ -1,9 +1,11 @@
 val javaVersion: JavaVersion = JavaVersion.VERSION_17
 val dependencyVersions: List<String> = listOf(
-    "org.jetbrains:annotations:21.0.0",
+    "org.jetbrains:annotations:23.0.0",
     "org.junit:junit-bom:5.8.2"
 )
-val dependencyGroupVersions: Map<String, String> = mapOf()
+val dependencyGroupVersions: Map<String, String> = mapOf(
+    "org.springframework.security" to "5.8.0"
+)
 
 plugins {
   id("org.springframework.boot") version "2.7.6"
@@ -49,28 +51,22 @@ tasks {
 }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("org.springframework.boot:spring-boot-starter-web")
-  implementation("org.springframework.boot:spring-boot-starter-validation")
   implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("org.springframework.boot:spring-boot-starter-actuator")
-  implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
   implementation("io.micrometer:micrometer-registry-prometheus")
   implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
 
   implementation("org.codehaus.groovy:groovy:${libs.versions.groovy.get()}")
   implementation("org.codehaus.groovy:groovy-json:${libs.versions.groovy.get()}")
-  implementation("org.codehaus.groovy:groovy-datetime:${libs.versions.groovy.get()}")
 
   developmentOnly("org.springframework.boot:spring-boot-devtools")
   runtimeOnly("com.h2database:h2")
   runtimeOnly("org.postgresql:postgresql:${libs.versions.postgresql.get()}")
   annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
-  testImplementation("org.springframework.boot:spring-boot-starter-test") {
-    exclude(group = "junit", module = "junit")
-  }
+  testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.codehaus.groovy:groovy-test:${libs.versions.groovy.get()}")
   testImplementation("org.spockframework:spock-core:${libs.versions.spock.get()}")
   testImplementation("org.spockframework:spock-spring:${libs.versions.spock.get()}")
