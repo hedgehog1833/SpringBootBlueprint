@@ -1,21 +1,14 @@
-val javaVersion: JavaVersion = JavaVersion.VERSION_17
+val javaVersion: JavaVersion = JavaVersion.VERSION_21
 val dependencyVersions: List<String> = listOf(
-    "org.jetbrains:annotations:21.0.0",
-    "org.junit:junit-bom:5.8.2"
+    "org.junit:junit-bom:5.10.2"
 )
-val dependencyGroupVersions: Map<String, String> = mapOf()
+val dependencyGroupVersions: Map<String, String> = emptyMap()
 
 plugins {
-  id("org.springframework.boot") version "2.7.6"
-  id("io.spring.dependency-management") version "1.1.0"
+  alias(libs.plugins.springBoot)
+  alias(libs.plugins.springDependencyManagement)
   id("groovy")
 }
-
-springBoot {
-  mainClass.set("com.dammenhayn.blueprint.SpringBootBlueprintApplication")
-}
-
-group = "com.dammenhayn"
 
 repositories {
   mavenCentral()
@@ -43,43 +36,37 @@ configurations {
 }
 
 tasks {
+  bootJar {
+    archiveClassifier.set("boot")
+    enabled = true
+  }
+
+  jar {
+    enabled = false
+  }
+
   withType<Test> {
     useJUnitPlatform()
   }
 }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("org.springframework.boot:spring-boot-starter-web")
-  implementation("org.springframework.boot:spring-boot-starter-validation")
-  implementation("org.springframework.boot:spring-boot-starter-security")
-  implementation("org.springframework.boot:spring-boot-starter-actuator")
-  implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+  implementation(libs.bundles.springBootStarterApp)
 
-  implementation("io.micrometer:micrometer-registry-prometheus")
-  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
+  implementation(libs.bundles.groovyApp)
+  runtimeOnly(libs.postgres)
 
-  implementation("org.codehaus.groovy:groovy:${libs.versions.groovy.get()}")
-  implementation("org.codehaus.groovy:groovy-json:${libs.versions.groovy.get()}")
-  implementation("org.codehaus.groovy:groovy-datetime:${libs.versions.groovy.get()}")
+  developmentOnly(libs.springBootDevTools)
+  annotationProcessor(libs.springBootConfigurationProcessor)
 
-  developmentOnly("org.springframework.boot:spring-boot-devtools")
-  runtimeOnly("com.h2database:h2")
-  runtimeOnly("org.postgresql:postgresql:${libs.versions.postgresql.get()}")
-  annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-
-  testImplementation("org.springframework.boot:spring-boot-starter-test") {
-    exclude(group = "junit", module = "junit")
-  }
-  testImplementation("org.codehaus.groovy:groovy-test:${libs.versions.groovy.get()}")
-  testImplementation("org.spockframework:spock-core:${libs.versions.spock.get()}")
-  testImplementation("org.spockframework:spock-spring:${libs.versions.spock.get()}")
-  testImplementation("org.springframework.security:spring-security-test")
+  testImplementation(libs.springSecurityTest)
+  testImplementation(libs.bundles.testing)
+  testRuntimeOnly(libs.h2)
 }
 
 tasks {
   wrapper {
-    gradleVersion = "7.6"
+    gradleVersion = "8.6"
     distributionType = Wrapper.DistributionType.ALL
   }
 }

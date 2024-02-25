@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  employees-db:
+    container_name: employees-db
+    image: postgres:15.6-alpine
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_root_password
+      POSTGRES_DB: employees
+      PGDATA: /var/lib/postgresql/data/db-files/
+    secrets:
+      - db_root_password
+    networks:
+      - employees-network
+    volumes:
+      - type: volume
+        source: employees-db-volume
+        target: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+volumes:
+  employees-db-volume:
+    name: employees-db
+
+secrets:
+  db_root_password:
+    file: db_root_password.txt
+
+networks:
+  employees-network:
+    name: employees-network

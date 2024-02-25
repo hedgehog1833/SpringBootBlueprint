@@ -1,12 +1,15 @@
 package com.dammenhayn.blueprint.model.repository
 
+import com.dammenhayn.blueprint.config.DatabaseConfiguration
 import com.dammenhayn.blueprint.model.entity.EmployeeEntity
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification
 
 @DataJpaTest
+@ContextConfiguration(classes = [DatabaseConfiguration])
 @TestPropertySource(locations = "classpath:integrationtest.properties")
 class EmployeeRepositoryIT extends Specification {
 

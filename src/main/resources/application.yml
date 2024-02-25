@@ -20,7 +20,7 @@ spring:
   sql:
     init:
       platform: postgres
-      enabled: true
+      mode: always
   jpa:
     properties:
       hibernate:

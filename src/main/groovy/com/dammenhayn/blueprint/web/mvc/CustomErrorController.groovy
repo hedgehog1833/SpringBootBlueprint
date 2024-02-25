@@ -3,13 +3,11 @@ package com.dammenhayn.blueprint.web.mvc
 import com.dammenhayn.blueprint.config.Endpoints
 import com.dammenhayn.blueprint.config.ViewNames
 import groovy.util.logging.Slf4j
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.boot.web.servlet.error.ErrorController
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.ModelAndView
-
-import javax.servlet.RequestDispatcher
-import javax.servlet.http.HttpServletRequest
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND

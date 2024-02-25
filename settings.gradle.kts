@@ -1,3 +1,3 @@
 rootProject.name = "spring-boot-blueprint"
 
-enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

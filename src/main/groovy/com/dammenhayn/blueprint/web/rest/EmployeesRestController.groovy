@@ -5,6 +5,7 @@ import com.dammenhayn.blueprint.model.exception.RestRequestValidationException
 import com.dammenhayn.blueprint.service.EmployeeService
 import com.dammenhayn.blueprint.web.dto.EmployeeDto
 import com.dammenhayn.blueprint.web.dto.request.EmployeeRequestDto
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-
-import javax.validation.Valid
 
 import static com.dammenhayn.blueprint.model.exception.ErrorMessages.VALIDATION_ERROR
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE

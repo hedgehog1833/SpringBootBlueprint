@@ -1,9 +1,9 @@
 package com.dammenhayn.blueprint.model.entity
 
 import groovy.transform.EqualsAndHashCode
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
 
-import javax.persistence.Column
-import javax.persistence.Entity
 import java.time.LocalDate
 
 @Entity(name = "employees")

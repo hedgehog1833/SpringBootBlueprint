@@ -5,7 +5,6 @@ import com.dammenhayn.blueprint.model.repository.EmployeeRepository
 import com.dammenhayn.blueprint.web.dto.EmployeeDto
 import com.dammenhayn.blueprint.web.dto.request.EmployeeRequestDto
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 

@@ -1,21 +1,22 @@
 package com.dammenhayn.blueprint.model.entity
 
 import groovy.transform.EqualsAndHashCode
+import jakarta.persistence.EntityListeners
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.Id
+import jakarta.persistence.MappedSuperclass
+import jakarta.persistence.Temporal
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 
-import javax.persistence.EntityListeners
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.MappedSuperclass
-import javax.persistence.Temporal
-import javax.persistence.TemporalType
 import java.time.LocalDate
 import java.time.ZoneId
+
+import static jakarta.persistence.GenerationType.IDENTITY
+import static jakarta.persistence.TemporalType.TIMESTAMP
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener)
@@ -23,18 +24,18 @@ import java.time.ZoneId
 abstract class AbstractEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = IDENTITY)
   Long id
 
   @CreatedDate
-  @Temporal(TemporalType.TIMESTAMP)
+  @Temporal(TIMESTAMP)
   Date createdDate
 
   @CreatedBy
   String createdBy
 
   @LastModifiedDate
-  @Temporal(TemporalType.TIMESTAMP)
+  @Temporal(TIMESTAMP)
   Date lastModifiedDate
 
   @LastModifiedBy

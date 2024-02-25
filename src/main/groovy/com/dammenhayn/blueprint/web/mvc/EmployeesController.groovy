@@ -6,6 +6,7 @@ import com.dammenhayn.blueprint.service.EmployeeService
 import com.dammenhayn.blueprint.web.dto.EmployeeDto
 import com.dammenhayn.blueprint.web.dto.request.EmployeeRequestDto
 import com.dammenhayn.blueprint.web.dto.response.PaginationResponseDto
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
@@ -15,8 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.ModelAndView
-
-import javax.validation.Valid
 
 @Controller
 class EmployeesController {
