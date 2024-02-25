@@ -7,7 +7,7 @@ val dependencyGroupVersions: Map<String, String> = emptyMap()
 plugins {
   alias(libs.plugins.springBoot)
   alias(libs.plugins.springDependencyManagement)
-  id("groovy")
+  groovy
 }
 
 repositories {
